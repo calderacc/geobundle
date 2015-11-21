@@ -2,21 +2,24 @@
 
 namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\LatLngListGenerator;
 
-class SimpleLatLngListGenerator extends AbstractLatLngListGenerator
+class RangeLatLngListGenerator extends AbstractLatLngListGenerator
 {
     public function execute()
     {
+        $start = $this->track->getStartPoint();
+        $end = $this->track->getEndPoint();
+
         $result = array();
 
         $counter = 0;
 
         foreach ($this->xmlRootNode->trk->trkseg->trkpt as $point)
         {
-            if ($counter % $this->gapWidth == 0)
+            if ($counter >= $start && $counter < $end && $counter % $this->gapWidth == 0)
             {
                 $result[] = '['.$point['lat'].','.$point['lon'].']';
             }
-
+            
             ++$counter;
         }
 
