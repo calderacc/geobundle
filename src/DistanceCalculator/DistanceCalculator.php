@@ -4,27 +4,8 @@ namespace Caldera\GeoBundle\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\CoordInterface;
 
-class DistanceCalculator
+class DistanceCalculator extends AbstractDistanceCalculator
 {
-    /** @var array $coordList */
-    private $coordList = [];
-
-    public function __construct()
-    {
-    }
-
-    public function addCoord(CoordInterface $coord): DistanceCalculator
-    {
-        array_push($this->coordList, $coord);
-
-        return $this;
-    }
-
-    public function countCoords(): int
-    {
-        return count($this->coordList);
-    }
-
     public function calculate(): float
     {
         $distance = 0.0;
