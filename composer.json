@@ -8,5 +8,9 @@
             "email": "malte@caldera.cc"
         }
     ],
-    "require": {}
+    "require": {
+        "calderacc/geobasic": "dev-master",
+        "php": "^7.0",
+        "phpunit/phpunit": "^5.6"
+    }
 }
