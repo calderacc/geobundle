@@ -4,7 +4,7 @@ namespace Caldera\GeoBundle\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\CoordInterface;
 
-class DistanceCalculator extends AbstractDistanceCalculator
+class SimpleDistanceCalculator extends AbstractDistanceCalculator
 {
     public function calculate(): float
     {

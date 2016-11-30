@@ -3,13 +3,13 @@
 namespace Caldera\GeoBundle\Tests\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\Coord;
-use Caldera\GeoBundle\DistanceCalculator\DistanceCalculator;
+use Caldera\GeoBundle\DistanceCalculator\SimpleDistanceCalculator;
 
-class DistanceCalculatorTest extends \PHPUnit_Framework_TestCase
+class SimpleDistanceCalculatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testDistanceCalculator1()
     {
-        $distanceCalculator = new DistanceCalculator();
+        $distanceCalculator = new SimpleDistanceCalculator();
 
         $hamburg = new Coord(53.550556, 9.993333);
         $berlin = new Coord(52.518611, 13.408333);
