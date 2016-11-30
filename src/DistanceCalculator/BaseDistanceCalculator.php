@@ -1,7 +1,22 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\DistanceCalculator;
+namespace Caldera\DistanceCalculator;
 
-abstract class BaseDistanceCalculator
+use Caldera\GeoBasic\Coord\Coord;
+
+class DistanceCalculator
 {
+    /** @var array $coordList */
+    private $coordList = [];
+
+    public function __construct()
+    {
+    }
+
+    public function addCoord(Coord $coord): DistanceCalculator
+    {
+        array_push($this->coordList, $coord);
+
+        return $this;
+    }
 }
