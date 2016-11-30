@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\DistanceCalculator;
+namespace Caldera\GeoBundle\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\Coord;
 
