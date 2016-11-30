@@ -1,6 +1,6 @@
 {
-    "name": "caldera/gpxbundle",
-    "description": "Handle gpx stuff with Symfony",
+    "name": "caldera/geobundle",
+    "description": "Handle geo stuff with Symfony",
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Caldera\\GpxBundle\\": "src/"
+            "Caldera\\GeoBundle\\": "src/"
         }
     }
 }
