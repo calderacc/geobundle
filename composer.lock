@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/calderacc/geobasic.git",
-                "reference": "7a293ca33a8e10f5f79b8f5d100d01d191d154d4"
+                "reference": "081a4350fc2faefd4a64801f55bc88b1be346890"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/calderacc/geobasic/zipball/7a293ca33a8e10f5f79b8f5d100d01d191d154d4",
-                "reference": "7a293ca33a8e10f5f79b8f5d100d01d191d154d4",
+                "url": "https://api.github.com/repos/calderacc/geobasic/zipball/081a4350fc2faefd4a64801f55bc88b1be346890",
+                "reference": "081a4350fc2faefd4a64801f55bc88b1be346890",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                     "email": "malte@caldera.cc"
                 }
             ],
-            "time": "2016-11-12 01:52:04"
+            "time": "2016-11-30 22:39:07"
         },
         {
             "name": "doctrine/instantiator",
