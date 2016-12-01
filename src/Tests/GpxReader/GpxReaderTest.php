@@ -27,4 +27,17 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new \DateTime('2016-11-25 15:39:38'), $creationDateTime);
     }
+
+    public function testCountPoints()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $countPoints = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->countPoints();
+
+        $this->assertEquals(363, $countPoints);
+    }
 }
