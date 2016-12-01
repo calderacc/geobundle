@@ -12,7 +12,8 @@
         "calderacc/geobasic": "dev-master",
         "php": "^7.0",
         "phpunit/phpunit": "^5.6",
-        "emcconville/google-map-polyline-encoding-tool": ">=1.2.1"
+        "emcconville/google-map-polyline-encoding-tool": ">=1.2.1",
+        "ext-xml": "*"
     },
     "autoload": {
         "psr-4": {
