@@ -2,8 +2,12 @@
 
 namespace Caldera\GeoBundle\EntityInterface;
 
-interface TrackInterface
+/**
+ * Interface TrackInterface
+ * @package Caldera\GeoBundle\EntityInterface
+ * @deprecated 
+ */
+interface TrackInterface extends \Caldera\GeoBasic\TrackInterface\TrackInterface
 {
-    public function setPolyline(string $polyline): TrackInterface;
-    public function getPolyline(): string;
+
 }
