@@ -31,4 +31,9 @@ class GpxReader
 
         return $this;
     }
+
+    public function getCreationDateTime(): \DateTime
+    {
+        return new \DateTime($this->rootNode->metadata->time);
+    }
 }

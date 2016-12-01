@@ -14,4 +14,17 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
         $gpxReader
             ->loadFromFile($gpxTestFilename);
     }
+
+    public function testCreationDateTime()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $creationDateTime = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getCreationDateTime();
+
+        $this->assertEquals(new \DateTime('2016-11-25 15:39:38'), $creationDateTime);
+    }
 }
