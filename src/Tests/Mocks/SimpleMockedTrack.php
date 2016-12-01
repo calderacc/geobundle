@@ -2,7 +2,7 @@
 
 namespace Caldera\GeoBundle\Tests\Mocks;
 
-use Caldera\GeoBundle\EntityInterface\TrackInterface;
+use Caldera\GeoBasic\TrackInterface\TrackInterface;
 
 class SimpleMockedTrack implements TrackInterface
 {
