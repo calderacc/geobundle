@@ -13,17 +13,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/calderacc/geobasic.git",
-                "reference": "10ff6054f3fd03627c4e340b3e52ceda52e2423d"
+                "reference": "4b12f89fd3e20266f0c159932cae9e7af1f124d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/calderacc/geobasic/zipball/10ff6054f3fd03627c4e340b3e52ceda52e2423d",
-                "reference": "10ff6054f3fd03627c4e340b3e52ceda52e2423d",
+                "url": "https://api.github.com/repos/calderacc/geobasic/zipball/4b12f89fd3e20266f0c159932cae9e7af1f124d6",
+                "reference": "4b12f89fd3e20266f0c159932cae9e7af1f124d6",
                 "shasum": ""
             },
             "require": {
                 "emcconville/google-map-polyline-encoding-tool": ">=1.2.1",
-                "php": "^7.0",
+                "php": "^7.1",
                 "phpunit/phpunit": "^5.6"
             },
             "type": "library",
@@ -42,7 +42,7 @@
                     "email": "malte@caldera.cc"
                 }
             ],
-            "time": "2016-12-01 15:46:42"
+            "time": "2016-12-01 23:19:27"
         },
         {
             "name": "doctrine/instantiator",
