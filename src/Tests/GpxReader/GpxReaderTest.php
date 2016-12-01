@@ -2,6 +2,7 @@
 
 namespace Caldera\GeoBundle\Tests\DistanceCalculator;
 
+use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\GpxReader\GpxReader;
 
 class GpxReaderTest extends \PHPUnit_Framework_TestCase
@@ -65,5 +66,44 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
             ->countPositions();
 
         $this->assertEquals(363, $countPoints);
+    }
+
+    public function testGetPositionLatitude()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $latitude = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getLatitudeOfPosition(5);
+
+        $this->assertEquals(53.549361, $latitude);
+    }
+
+    public function testGetPositionLongitude()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $longitude = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getLongitudeOfPosition(5);
+
+        $this->assertEquals(9.979132, $longitude);
+    }
+
+    public function testGetPosition()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $position = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getPosition(5);
+
+        $this->assertEquals(new Position(53.549361, 9.979132), $position);
     }
 }
