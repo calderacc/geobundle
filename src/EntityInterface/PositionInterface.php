@@ -13,22 +13,22 @@ interface PositionInterface extends CoordInterface
     public function getLongitude(): float;
 
     public function setAccuracy(float $accuracy): PositionInterface;
-    public function getAccuracy();
+    public function getAccuracy(): ?float;
 
     public function setAltitude(float $altitude): PositionInterface;
-    public function getAltitude();
+    public function getAltitude(): ?float;
 
     public function setAltitudeAccuracy(float $altitudeAccuracy): PositionInterface;
-    public function getAltitudeAccuracy();
+    public function getAltitudeAccuracy(): ?float;
 
     public function setHeading(float $heading): PositionInterface;
-    public function getHeading();
+    public function getHeading(): ?float;
 
     public function setSpeed(float $speed): PositionInterface;
-    public function getSpeed();
+    public function getSpeed(): ?float;
 
     public function setTimestamp(int $timestamp): PositionInterface;
-    public function getTimestamp();
+    public function getTimestamp(): ?int;
 
     public function setCreationDateTime(\DateTime $creationDateTime): PositionInterface;
     public function getCreationDateTime(): \DateTime;
