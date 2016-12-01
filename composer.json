@@ -10,7 +10,7 @@
     ],
     "require": {
         "calderacc/geobasic": "dev-master",
-        "php": "^7.0",
+        "php": "^7.1",
         "phpunit/phpunit": "^5.6",
         "emcconville/google-map-polyline-encoding-tool": ">=1.2.1",
         "ext-xml": "*"
