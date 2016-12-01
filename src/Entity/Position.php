@@ -108,7 +108,7 @@ class Position extends Coord implements PositionInterface
         return $this;
     }
 
-    public function getCreationDateTime(): \DateTime
+    public function getCreationDateTime(): ?\DateTime
     {
         return $this->creationDateTime;
     }
