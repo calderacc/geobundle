@@ -37,7 +37,7 @@ class GpxReader
         return new \DateTime($this->rootNode->metadata->time);
     }
 
-    public function countPoints(): int
+    public function countPositions(): int
     {
         return count($this->rootNode->trk->trkseg->trkpt);
     }
