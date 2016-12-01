@@ -37,6 +37,16 @@ class GpxReader
         return new \DateTime($this->rootNode->metadata->time);
     }
 
+    public function getStartDateTime(): \DateTime
+    {
+        return new \DateTime($this->rootNode->trk->trkseg->trkpt[0]->time);
+    }
+
+    public function getEndDateTime(): \DateTime
+    {
+        return new \DateTime($this->rootNode->trk->trkseg->trkpt[count($this->rootNode->trk->trkseg->trkpt) - 1]->time);
+    }
+
     public function countPositions(): int
     {
         return count($this->rootNode->trk->trkseg->trkpt);
