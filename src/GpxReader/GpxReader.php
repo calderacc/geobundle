@@ -2,6 +2,9 @@
 
 namespace Caldera\GeoBundle\GpxReader;
 
+use Caldera\GeoBundle\Entity\Position;
+use Caldera\GeoBundle\EntityInterface\PositionInterface;
+
 class GpxReader
 {
     /** @var string $xmlString */
@@ -10,8 +13,11 @@ class GpxReader
     /** @var \SimpleXMLElement $rootNode */
     protected $rootNode;
 
-    public function __construct()
+    protected $positionClass;
+
+    public function __construct($positionClass = Position::class)
     {
+        $this->positionClass = $positionClass;
     }
 
     public function loadFromString(string $xmlString): GpxReader
