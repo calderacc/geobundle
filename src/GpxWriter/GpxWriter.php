@@ -2,12 +2,27 @@
 
 namespace Caldera\GeoBundle\GpxWriter;
 
+use Caldera\GeoBundle\EntityInterface\PositionInterface;
+
 class GpxWriter
 {
-    protected $positionArray;
+    /** @var array $coordList */
+    protected $coordList;
+
+    /** @var string $gpxContent */
     protected $gpxContent = null;
 
-    protected function generateGpxContent()
+    /** @var \XMLWriter $writer */
+    protected $writer;
+
+    public function __construct(array $coordList = [])
+    {
+        $this->coordList = $coordList;
+
+        $this->writer = new \XMLWriter();
+    }
+
+    public function generateGpxContent()
     {
         $writer = new \XMLWriter();
         $writer->openMemory();
@@ -25,7 +40,7 @@ class GpxWriter
         $writer->startElement('metadata');
         $writer->startElement('time');
 
-        $dateTime = $this->positionArray[0]->getCreationDateTime();
+        $dateTime = $this->coordList[0]->getDateTime();
         $writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
 
         $writer->endElement();
@@ -34,10 +49,8 @@ class GpxWriter
         $writer->startElement('trk');
         $writer->startElement('trkseg');
 
-        /**
-         * @var Position $position
-         */
-        foreach ($this->positionArray as $position) {
+        /** @var PositionInterface $position */
+        foreach ($this->coordList as $position) {
             $writer->startElement('trkpt');
             $writer->writeAttribute('lat', $position->getLatitude());
             $writer->writeAttribute('lon', $position->getLongitude());
@@ -48,15 +61,7 @@ class GpxWriter
 
             $writer->startElement('time');
 
-            /* Well, only positions provided by Glympse or external tools provide the timestamp of a position.
-             * Critical Maps only provides latitude and longitude, so we need to generate the timestamp ourself.
-             */
-            if ($position->getCriticalmapsUser()) {
-                $dateTime = $position->getCreationDateTime();
-            } else {
-                $dateTime = new \DateTime();
-                $dateTime->setTimestamp($position->getTimestamp());
-            }
+            $dateTime = $position->getDateTime();
 
             $writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
 
@@ -68,16 +73,8 @@ class GpxWriter
         $writer->endElement();
         $writer->endElement();
         $writer->endDocument();
+
         $this->gpxContent = $writer->outputMemory(true);
-    }
-
-    public function execute()
-    {
-        $this->findPositions();
-
-        if (count($this->positionArray) > 0) {
-            $this->generateGpxContent();
-        }
     }
 
     public function getGpxContent()
