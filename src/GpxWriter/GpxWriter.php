@@ -35,14 +35,14 @@ class GpxWriter implements GpxWriterInterface
         file_put_contents($filename, $this->gpxContent);
     }
 
-    public function addGpxAttribute(string $attributeName, string $attributeValue): GpxWriter
+    public function addGpxAttribute(string $attributeName, string $attributeValue): GpxWriterInterface
     {
         $this->gpxAttributes[$attributeName] = $attributeValue;
 
         return $this;
     }
 
-    public function addStandardGpxAttributes(): GpxWriter
+    public function addStandardGpxAttributes(): GpxWriterInterface
     {
         $this->gpxAttributes['xmlns'] = 'http://www.topografix.com/GPX/1/1';
         $this->gpxAttributes['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
@@ -81,7 +81,7 @@ class GpxWriter implements GpxWriterInterface
         $this->writer->flush();
     }
 
-    protected function generateGpxAttributes(): GpxWriter
+    protected function generateGpxAttributes(): GpxWriterInterface
     {
         foreach ($this->gpxAttributes as $attributeName => $attributeValue) {
             $this->writer->writeAttribute($attributeName, $attributeValue);
@@ -90,7 +90,7 @@ class GpxWriter implements GpxWriterInterface
         return $this;
     }
 
-    protected function generateGpxMetadata(): GpxWriter
+    protected function generateGpxMetadata(): GpxWriterInterface
     {
         $this->writer->startElement('metadata');
         $this->writer->startElement('time');
@@ -105,7 +105,7 @@ class GpxWriter implements GpxWriterInterface
         return $this;
     }
 
-    protected function generateGpxPosition(PositionInterface $position): GpxWriter
+    protected function generateGpxPosition(PositionInterface $position): GpxWriterInterface
     {
         $this->writer->startElement('trkpt');
         $this->writer->writeAttribute('lat', $position->getLatitude());
