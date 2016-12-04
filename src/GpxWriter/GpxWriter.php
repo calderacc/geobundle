@@ -52,15 +52,7 @@ class GpxWriter
         $writer->startElement('gpx');
 
         $this->generateGpxAttributes();
-
-        $writer->startElement('metadata');
-        $writer->startElement('time');
-
-        $dateTime = $this->coordList[0]->getDateTime();
-        $writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
-
-        $writer->endElement();
-        $writer->endElement();
+        $this->generateGpxMetadata();
 
         $writer->startElement('trk');
         $writer->startElement('trkseg');
@@ -102,6 +94,20 @@ class GpxWriter
         return $this;
     }
 
+    protected function generateGpxMetadata(): GpxWriter
+    {
+        $this->writer->startElement('metadata');
+        $this->writer->startElement('time');
+
+        /** @var \DateTime $dateTime */
+        $dateTime = $this->coordList[0]->getDateTime();
+        $this->writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
+
+        $this->writer->endElement();
+        $this->writer->endElement();
+
+        return $this;
+    }
     public function getGpxContent(): string
     {
         return $this->gpxContent;
