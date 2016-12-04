@@ -43,31 +43,32 @@ class GpxWriter
 
     public function generateGpxContent(): void
     {
-        $writer = new \XMLWriter();
-        $writer->openMemory();
-        $writer->startDocument('1.0');
+        $this->writer->openMemory();
+        $this->writer->startDocument('1.0');
 
-        $writer->setIndent(4);
+        $this->writer->setIndent(4);
 
-        $writer->startElement('gpx');
+        $this->writer->startElement('gpx');
 
         $this->generateGpxAttributes();
         $this->generateGpxMetadata();
 
-        $writer->startElement('trk');
-        $writer->startElement('trkseg');
+        $this->writer->startElement('trk');
+        $this->writer->startElement('trkseg');
 
         /** @var PositionInterface $position */
         foreach ($this->coordList as $position) {
             $this->generateGpxPosition($position);
         }
 
-        $writer->endElement();
-        $writer->endElement();
-        $writer->endElement();
-        $writer->endDocument();
+        $this->writer->endElement();
+        $this->writer->endElement();
+        $this->writer->endElement();
+        $this->writer->endDocument();
 
-        $this->gpxContent = $writer->outputMemory(true);
+        $this->gpxContent = $this->writer->outputMemory(true);
+
+        $this->writer->flush();
     }
 
     protected function generateGpxAttributes(): GpxWriter
