@@ -9,6 +9,9 @@ class GpxWriter
     /** @var array $coordList */
     protected $coordList;
 
+    /** @var array $gpxAttributes */
+    protected $gpxAttributes = [];
+
     /** @var string $gpxContent */
     protected $gpxContent = null;
 
@@ -22,6 +25,22 @@ class GpxWriter
         $this->writer = new \XMLWriter();
     }
 
+    public function addGpxAttribute(string $attributeName, string $attributeValue): GpxWriter
+    {
+        $this->gpxAttributes[$attributeName] = $attributeValue;
+
+        return $this;
+    }
+
+    public function addStandardGpxAttributes(): GpxWriter
+    {
+        $this->gpxAttributes['xmlns'] = 'http://www.topografix.com/GPX/1/1';
+        $this->gpxAttributes['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
+        $this->gpxAttributes['xsi:schemaLocation'] = 'http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd';
+
+        return $this;
+    }
+
     public function generateGpxContent(): void
     {
         $writer = new \XMLWriter();
@@ -31,11 +50,8 @@ class GpxWriter
         $writer->setIndent(4);
 
         $writer->startElement('gpx');
-        $writer->writeAttribute('creator', 'criticalmass.in');
-        $writer->writeAttribute('version', '0.1');
-        $writer->writeAttribute('xmlns', 'http://www.topografix.com/GPX/1/1');
-        $writer->writeAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-        $writer->writeAttribute('xsi:schemaLocation', 'http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd');
+
+        $this->generateGpxAttributes();
 
         $writer->startElement('metadata');
         $writer->startElement('time');
@@ -75,6 +91,15 @@ class GpxWriter
         $writer->endDocument();
 
         $this->gpxContent = $writer->outputMemory(true);
+    }
+
+    protected function generateGpxAttributes(): GpxWriter
+    {
+        foreach ($this->gpxAttributes as $attributeName => $attributeValue) {
+            $this->writer->writeAttribute($attributeName, $attributeValue);
+        }
+
+        return $this;
     }
 
     public function getGpxContent(): string
