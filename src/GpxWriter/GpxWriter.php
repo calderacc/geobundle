@@ -1,13 +1,8 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxExporter;
+namespace Caldera\GeoBundle\GpxWriter;
 
-
-use Caldera\Bundle\CalderaBundle\Entity\CriticalmapsUser;
-use Caldera\Bundle\CalderaBundle\Entity\Position;
-use Caldera\Bundle\CalderaBundle\Entity\Ticket;
-
-class GpxExporter
+class GpxWriter
 {
     protected $entityManager;
     protected $doctrine;
