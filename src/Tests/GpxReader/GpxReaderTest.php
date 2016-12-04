@@ -94,19 +94,6 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(9.979132, $longitude);
     }
 
-    public function testGetPosition()
-    {
-        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
-
-        $gpxReader = new GpxReader();
-
-        $position = $gpxReader
-            ->loadFromFile($gpxTestFilename)
-            ->getPosition(5);
-
-        $this->assertEquals(new Position(53.549361, 9.979132), $position);
-    }
-
     public function testGetElevationOfPosition()
     {
         $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
@@ -131,5 +118,18 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
             ->getDateTimeOfPosition(5);
 
         $this->assertEquals(new \DateTime('2016-11-25 15:40:29'), $dateTime);
+    }
+
+    public function testGetPosition()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $position = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getPosition(5);
+
+        $this->assertEquals(new Position(53.549361, 9.979132), $position);
     }
 }

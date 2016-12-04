@@ -58,14 +58,6 @@ class GpxReader
         return count($this->rootNode->trk->trkseg->trkpt);
     }
 
-    public function getPosition(int $n): PositionInterface
-    {
-        $latitude = $this->getLatitudeOfPosition($n);
-        $longitude = $this->getLongitudeOfPosition($n);
-
-        return new $this->positionClass($latitude, $longitude);
-    }
-
     public function getLatitudeOfPosition(int $n): float
     {
         return (float) $this->rootNode->trk->trkseg->trkpt[$n]['lat'];
@@ -84,5 +76,13 @@ class GpxReader
     public function getDateTimeOfPosition($n): \DateTime
     {
         return new \DateTime($this->rootNode->trk->trkseg->trkpt[$n]->time);
+    }
+
+    public function getPosition(int $n): PositionInterface
+    {
+        $latitude = $this->getLatitudeOfPosition($n);
+        $longitude = $this->getLongitudeOfPosition($n);
+
+        return new $this->positionClass($latitude, $longitude);
     }
 }
