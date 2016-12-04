@@ -22,7 +22,7 @@ class GpxWriter
         $this->writer = new \XMLWriter();
     }
 
-    public function generateGpxContent()
+    public function generateGpxContent(): void
     {
         $writer = new \XMLWriter();
         $writer->openMemory();
@@ -77,7 +77,7 @@ class GpxWriter
         $this->gpxContent = $writer->outputMemory(true);
     }
 
-    public function getGpxContent()
+    public function getGpxContent(): string
     {
         return $this->gpxContent;
     }
