@@ -92,15 +92,17 @@ class GpxWriter implements GpxWriterInterface
 
     protected function generateGpxMetadata(): GpxWriterInterface
     {
-        $this->writer->startElement('metadata');
-        $this->writer->startElement('time');
+        if (count($this->coordList) > 0) {
+            $this->writer->startElement('metadata');
+            $this->writer->startElement('time');
 
-        /** @var \DateTime $dateTime */
-        $dateTime = $this->coordList[0]->getDateTime();
-        $this->writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
+            /** @var \DateTime $dateTime */
+            $dateTime = $this->coordList[0]->getDateTime();
+            $this->writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
 
-        $this->writer->endElement();
-        $this->writer->endElement();
+            $this->writer->endElement();
+            $this->writer->endElement();
+        }
 
         return $this;
     }
