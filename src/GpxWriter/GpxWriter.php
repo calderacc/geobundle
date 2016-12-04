@@ -59,22 +59,7 @@ class GpxWriter
 
         /** @var PositionInterface $position */
         foreach ($this->coordList as $position) {
-            $writer->startElement('trkpt');
-            $writer->writeAttribute('lat', $position->getLatitude());
-            $writer->writeAttribute('lon', $position->getLongitude());
-
-            $writer->startElement('ele');
-            $writer->text($position->getAltitude());
-            $writer->endElement();
-
-            $writer->startElement('time');
-
-            $dateTime = $position->getDateTime();
-
-            $writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
-
-            $writer->endElement();
-            $writer->endElement();
+            $this->generateGpxPosition($position);
         }
 
         $writer->endElement();
@@ -108,6 +93,31 @@ class GpxWriter
 
         return $this;
     }
+
+    protected function generateGpxPosition(PositionInterface $position): GpxWriter
+    {
+        $this->writer->startElement('trkpt');
+        $this->writer->writeAttribute('lat', $position->getLatitude());
+        $this->writer->writeAttribute('lon', $position->getLongitude());
+
+        if ($position->getAltitude()) {
+            $this->writer->startElement('ele');
+            $this->writer->text($position->getAltitude());
+            $this->writer->endElement();
+        }
+
+        if ($position->getDateTime()) {
+            $this->writer->startElement('time');
+            $dateTime = $position->getDateTime();
+            $this->writer->text($dateTime->format('Y-m-d') . 'T' . $dateTime->format('H:i:s') . 'Z');
+            $this->writer->endElement();
+        }
+
+        $this->writer->endElement();
+
+        return $this;
+    }
+
     public function getGpxContent(): string
     {
         return $this->gpxContent;
