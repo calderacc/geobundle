@@ -4,44 +4,8 @@ namespace Caldera\GeoBundle\GpxWriter;
 
 class GpxWriter
 {
-    protected $entityManager;
-    protected $doctrine;
-    protected $ticket = null;
-    protected $criticalmapsUser = null;
     protected $positionArray;
     protected $gpxContent = null;
-
-    public function __construct($entityManager, $doctrine)
-    {
-        $this->entityManager = $entityManager;
-        $this->doctrine = $doctrine;
-    }
-
-    public function setTicket(Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-    }
-
-    public function setCriticalmapsUser(CriticalmapsUser $criticalmapsUser)
-    {
-        $this->criticalmapsUser = $criticalmapsUser;
-    }
-
-    public function setPositionArray($positionArray)
-    {
-        $this->positionArray = $positionArray;
-    }
-
-    protected function findPositions()
-    {
-        if ($this->ticket) {
-            $this->positionArray = $this->doctrine->getRepository('CalderaBundle:Position')->findPositionsForTicket($this->ticket);
-        }
-
-        if ($this->criticalmapsUser) {
-            $this->positionArray = $this->doctrine->getRepository('CalderaBundle:Position')->findPositionsForCriticalmapsUser($this->criticalmapsUser);
-        }
-    }
 
     protected function generateGpxContent()
     {
