@@ -126,10 +126,10 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
 
         $gpxReader = new GpxReader();
 
-        $position = $gpxReader
+        $dateTime = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getPosition(5);
+            ->getDateTimeOfPosition(5);
 
-        $this->assertEquals(new Position(53.549361, 9.979132), $position);
+        $this->assertEquals(new \DateTime('2016-11-25 15:40:29'), $dateTime);
     }
 }

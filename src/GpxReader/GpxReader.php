@@ -83,6 +83,6 @@ class GpxReader
 
     public function getDateTimeOfPosition($n): \DateTime
     {
-        return new \DateTime($this->getTimestampOfPosition($n));
+        return new \DateTime($this->rootNode->trk->trkseg->trkpt[$n]->time);
     }
 }
