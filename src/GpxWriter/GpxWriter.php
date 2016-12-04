@@ -30,6 +30,11 @@ class GpxWriter
         return $this->gpxContent;
     }
 
+    public function saveGpxContent(string $filename): void
+    {
+        file_put_contents($filename, $this->gpxContent);
+    }
+
     public function addGpxAttribute(string $attributeName, string $attributeValue): GpxWriter
     {
         $this->gpxAttributes[$attributeName] = $attributeValue;
