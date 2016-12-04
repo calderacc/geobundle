@@ -4,7 +4,7 @@ namespace Caldera\GeoBundle\GpxWriter;
 
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 
-class GpxWriter
+class GpxWriter implements GpxWriterInterface
 {
     /** @var array $coordList */
     protected $coordList;
