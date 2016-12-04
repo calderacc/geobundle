@@ -25,6 +25,11 @@ class GpxWriter
         $this->writer = new \XMLWriter();
     }
 
+    public function getGpxContent(): string
+    {
+        return $this->gpxContent;
+    }
+
     public function addGpxAttribute(string $attributeName, string $attributeValue): GpxWriter
     {
         $this->gpxAttributes[$attributeName] = $attributeValue;
@@ -117,10 +122,5 @@ class GpxWriter
         $this->writer->endElement();
 
         return $this;
-    }
-
-    public function getGpxContent(): string
-    {
-        return $this->gpxContent;
     }
 } 
