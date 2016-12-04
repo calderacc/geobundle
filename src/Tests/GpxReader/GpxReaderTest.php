@@ -106,4 +106,17 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new Position(53.549361, 9.979132), $position);
     }
+
+    public function testGetElevationOfPosition()
+    {
+        $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
+
+        $gpxReader = new GpxReader();
+
+        $elevation = $gpxReader
+            ->loadFromFile($gpxTestFilename)
+            ->getElevationOfPosition(5);
+
+        $this->assertEquals(24.6, $elevation);
+    }
 }

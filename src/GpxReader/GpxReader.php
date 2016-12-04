@@ -75,4 +75,9 @@ class GpxReader
     {
         return (float) $this->rootNode->trk->trkseg->trkpt[$n]['lon'];
     }
+
+    public function getElevationOfPosition($n): float
+    {
+        return (float) $this->rootNode->trk->trkseg->trkpt[$n]->ele[0];
+    }
 }
