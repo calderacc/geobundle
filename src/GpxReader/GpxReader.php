@@ -80,9 +80,17 @@ class GpxReader
 
     public function getPosition(int $n): PositionInterface
     {
-        $latitude = $this->getLatitudeOfPosition($n);
-        $longitude = $this->getLongitudeOfPosition($n);
+        /** @var PositionInterface $position */
+        $position = new $this->positionClass(
+            $this->getLatitudeOfPosition($n),
+            $this->getLongitudeOfPosition($n)
+        );
 
-        return new $this->positionClass($latitude, $longitude);
+        $position
+            ->setAltitude($this->getElevationOfPosition($n))
+            ->setCreationDateTime($this->getDateTimeOfPosition($n))
+        ;
+
+        return $position;
     }
 }

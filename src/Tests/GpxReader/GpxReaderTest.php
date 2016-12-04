@@ -130,6 +130,12 @@ class GpxReaderTest extends \PHPUnit_Framework_TestCase
             ->loadFromFile($gpxTestFilename)
             ->getPosition(5);
 
-        $this->assertEquals(new Position(53.549361, 9.979132), $position);
+        $expectedPosition = new Position(53.549361, 9.979132);
+        $expectedPosition
+            ->setAltitude(24.6)
+            ->setCreationDateTime(new \DateTime('2016-11-25 15:40:29'))
+        ;
+
+        $this->assertEquals($expectedPosition, $position);
     }
 }
