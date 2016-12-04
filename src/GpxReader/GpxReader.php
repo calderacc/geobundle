@@ -81,11 +81,6 @@ class GpxReader
         return (float) $this->rootNode->trk->trkseg->trkpt[$n]->ele[0];
     }
 
-    public function getTimestampOfPosition($n): int
-    {
-        return $this->rootNode->trk->trkseg->trkpt[$n]->time;
-    }
-
     public function getDateTimeOfPosition($n): \DateTime
     {
         return new \DateTime($this->getTimestampOfPosition($n));
