@@ -13,7 +13,7 @@ class Position extends Coord implements PositionInterface
     protected $heading;
     protected $speed;
     protected $timestamp;
-    protected $creationDateTime;
+    protected $dateTime;
 
     public function setLatitude(float $latitude): PositionInterface
     {
@@ -101,15 +101,15 @@ class Position extends Coord implements PositionInterface
         return $this->timestamp;
     }
 
-    public function setCreationDateTime(\DateTime $creationDateTime): PositionInterface
+    public function setDateTime(\DateTime $creationDateTime): PositionInterface
     {
-        $this->creationDateTime = $creationDateTime;
+        $this->dateTime = $creationDateTime;
 
         return $this;
     }
 
-    public function getCreationDateTime(): ?\DateTime
+    public function getDateTime(): ?\DateTime
     {
-        return $this->creationDateTime;
+        return $this->dateTime;
     }
 }

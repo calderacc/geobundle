@@ -88,7 +88,7 @@ class GpxReader
 
         $position
             ->setAltitude($this->getElevationOfPosition($n))
-            ->setCreationDateTime($this->getDateTimeOfPosition($n))
+            ->setDateTime($this->getDateTimeOfPosition($n))
         ;
 
         return $position;

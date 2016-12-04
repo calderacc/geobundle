@@ -30,6 +30,6 @@ interface PositionInterface extends CoordInterface
     public function setTimestamp(int $timestamp): PositionInterface;
     public function getTimestamp(): ?int;
 
-    public function setCreationDateTime(\DateTime $creationDateTime): PositionInterface;
-    public function getCreationDateTime(): ?\DateTime;
+    public function setDateTime(\DateTime $creationDateTime): PositionInterface;
+    public function getDateTime(): ?\DateTime;
 }
