@@ -1,10 +1,9 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\GpxCoordLoop;
+namespace Caldera\GeoBundle\Loop;
 
-use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\GpxReader;
 
-class GpxCoordLoop
+class Loop
 {
     /** @var GpxReader $gpxReader */
     protected $gpxReader;
