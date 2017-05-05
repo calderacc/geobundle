@@ -4,8 +4,9 @@ namespace Caldera\GeoBundle\Test\DistanceCalculator;
 
 use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\GpxReader\GpxReader;
+use PHPUnit\Framework\TestCase;
 
-class GpxReaderTest extends \PHPUnit_Framework_TestCase
+class GpxReaderTest extends TestCase
 {
     public function testGpxReader1()
     {
