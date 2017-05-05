@@ -78,7 +78,7 @@ class GpxReader
         return new \DateTime($this->trackPointList[$lastTrackPointNumber]->time);
     }
 
-    public function countPositions(): int
+    public function countPoints(): int
     {
         return count($this->trackPointList);
     }

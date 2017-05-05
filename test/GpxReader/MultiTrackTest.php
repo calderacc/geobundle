@@ -16,7 +16,7 @@ class MultiTrackTest extends TestCase
         $gpxReader
             ->loadFromFile($gpxTestFilename);
 
-        $this->assertEquals(5218, $gpxReader->countPositions());
+        $this->assertEquals(5218, $gpxReader->countPoints());
     }
 
     public function test2()
@@ -27,6 +27,6 @@ class MultiTrackTest extends TestCase
         $gpxReader
             ->loadFromFile($gpxTestFilename);
 
-        $this->assertEquals(3325, $gpxReader->countPositions());
+        $this->assertEquals(3325, $gpxReader->countPoints());
     }
 }
