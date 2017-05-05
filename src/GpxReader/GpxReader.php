@@ -5,7 +5,7 @@ namespace Caldera\GeoBundle\GpxReader;
 use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 
-class GpxReader
+class GpxReader implements GpxReaderInterface
 {
     /** @var \SimpleXMLElement $rootNode */
     protected $rootNode;
@@ -20,14 +20,14 @@ class GpxReader
         $this->positionClass = $positionClass;
     }
 
-    public function loadFromString(string $gpxString): GpxReader
+    public function loadFromString(string $gpxString): GpxReaderInterface
     {
         $this->prepareGpx($gpxString);
 
         return $this;
     }
 
-    public function loadFromFile(string $filename): GpxReader
+    public function loadFromFile(string $filename): GpxReaderInterface
     {
         $gpxString = file_get_contents($filename);
 
