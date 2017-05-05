@@ -9,7 +9,6 @@ use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\TrackReader;
 
 class TrackTimeShifter
 {
-    protected $doctrine;
     protected $trackReader;
     protected $gpxExporter;
 
@@ -20,9 +19,8 @@ class TrackTimeShifter
 
     protected $positionArray;
 
-    public function __construct($doctrine, TrackReader $trackReader, GpxExporter $gpxExporter)
+    public function __construct(TrackReader $trackReader, GpxExporter $gpxExporter)
     {
-        $this->doctrine = $doctrine;
         $this->trackReader = $trackReader;
         $this->gpxExporter = $gpxExporter;
     }
