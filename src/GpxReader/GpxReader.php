@@ -98,17 +98,17 @@ class GpxReader
         return (float) $this->trackPointList[$n]['lon'];
     }
 
-    public function getElevationOfPoint($n): float
+    public function getElevationOfPoint(int $n): float
     {
         return (float) $this->trackPointList[$n]->ele[0];
     }
 
-    public function getDateTimeOfPoint($n): \DateTime
+    public function getDateTimeOfPoint(int $n): \DateTime
     {
         return new \DateTime($this->trackPointList[$n]->time);
     }
 
-    public function getPoint($n): \SimpleXMLElement
+    public function getPoint(int $n): \SimpleXMLElement
     {
         return $this->trackPointList[$n];
     }
