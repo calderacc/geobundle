@@ -61,6 +61,11 @@ class GpxReader
         return $this;
     }
 
+    public function getRootNode(): \SimpleXMLElement
+    {
+        return $this->rootNode;
+    }
+
     public function getCreationDateTime(): \DateTime
     {
         return new \DateTime($this->rootNode->metadata->time);

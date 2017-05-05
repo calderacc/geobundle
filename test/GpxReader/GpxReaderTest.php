@@ -15,6 +15,8 @@ class GpxReaderTest extends TestCase
         $gpxReader = new GpxReader();
         $gpxReader
             ->loadFromFile($gpxTestFilename);
+
+        $this->assertNotNull($gpxReader->getRootNode());
     }
 
     public function testCreationDateTime()
