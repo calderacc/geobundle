@@ -21,5 +21,8 @@
         "psr-4": {
             "Caldera\\GeoBundle\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "vendor/phpunit/phpunit/phpunit test"
     }
 }
