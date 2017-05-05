@@ -7,7 +7,7 @@ use Caldera\Bundle\CalderaBundle\Entity\Track;
 use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxExporter\GpxExporter;
 use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\TrackReader;
 
-class TrackTimeShift
+class TrackTimeShifter
 {
     protected $doctrine;
     protected $trackReader;
