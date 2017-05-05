@@ -3,10 +3,11 @@
 namespace Caldera\GeoBundle\Test\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\Coord;
+use Caldera\GeoBasic\Track\Track;
 use Caldera\GeoBundle\DistanceCalculator\SimpleDistanceCalculator;
-use Caldera\GeoBundle\Tests\Mocks\SimpleMockedTrack;
+use PHPUnit\Framework\TestCase;
 
-class SimpleDistanceCalculatorTest extends \PHPUnit_Framework_TestCase
+class SimpleDistanceCalculatorTest extends TestCase
 {
     public function testDistanceCalculator1()
     {
@@ -28,10 +29,11 @@ class SimpleDistanceCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $distanceCalculator = new SimpleDistanceCalculator();
 
-        $track = new SimpleMockedTrack();
+        $mockedTrack = new Track();
+        $mockedTrack->setPolyline('wrzeIuy~{@WdEmBrDmCvAwCuB_D}BaEyBy@yBHoG~@_HrAuItAeG`ByCt@a@`AlAxQv^{@nDwBjB');
 
         $distance = $distanceCalculator
-            ->addTrack($track)
+            ->addTrack($mockedTrack)
             ->calculate();
 
         $this->assertEquals(1.8518590521829, $distance);
