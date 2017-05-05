@@ -3,8 +3,9 @@
 namespace Caldera\GeoBundle\Test\DistanceCalculator;
 
 use Caldera\GeoBundle\GpxWriter\GpxWriter;
+use PHPUnit\Framework\TestCase;
 
-class GpxWriterTest extends \PHPUnit_Framework_TestCase
+class GpxWriterTest extends TestCase
 {
     public function testGpxWriter1()
     {
