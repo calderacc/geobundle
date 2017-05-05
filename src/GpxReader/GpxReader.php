@@ -83,22 +83,22 @@ class GpxReader
         return count($this->trackPointList);
     }
 
-    public function getLatitudeOfPosition(int $n): float
+    public function getLatitudeOfPoint(int $n): float
     {
         return (float) $this->trackPointList[$n]['lat'];
     }
 
-    public function getLongitudeOfPosition(int $n): float
+    public function getLongitudeOfPoint(int $n): float
     {
         return (float) $this->trackPointList[$n]['lon'];
     }
 
-    public function getElevationOfPosition($n): float
+    public function getElevationOfPoint($n): float
     {
         return (float) $this->trackPointList[$n]->ele[0];
     }
 
-    public function getDateTimeOfPosition($n): \DateTime
+    public function getDateTimeOfPoint($n): \DateTime
     {
         return new \DateTime($this->trackPointList[$n]->time);
     }
@@ -107,13 +107,13 @@ class GpxReader
     {
         /** @var PositionInterface $position */
         $position = new $this->positionClass(
-            $this->getLatitudeOfPosition($n),
-            $this->getLongitudeOfPosition($n)
+            $this->getLatitudeOfPoint($n),
+            $this->getLongitudeOfPoint($n)
         );
 
         $position
-            ->setAltitude($this->getElevationOfPosition($n))
-            ->setDateTime($this->getDateTimeOfPosition($n))
+            ->setAltitude($this->getElevationOfPoint($n))
+            ->setDateTime($this->getDateTimeOfPoint($n))
         ;
 
         return $position;

@@ -56,7 +56,7 @@ class GpxReaderTest extends TestCase
         $this->assertEquals(new \DateTime('2016-11-25 15:49:42'), $creationDateTime);
     }
 
-    public function testCountPositions()
+    public function testCountPoints()
     {
         $gpxTestFilename = __DIR__.'/../Files/bahnhof.gpx';
 
@@ -64,7 +64,7 @@ class GpxReaderTest extends TestCase
 
         $countPoints = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->countPositions();
+            ->countPoints();
 
         $this->assertEquals(363, $countPoints);
     }
@@ -77,7 +77,7 @@ class GpxReaderTest extends TestCase
 
         $latitude = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getLatitudeOfPosition(5);
+            ->getLatitudeOfPoint(5);
 
         $this->assertEquals(53.549361, $latitude);
     }
@@ -90,7 +90,7 @@ class GpxReaderTest extends TestCase
 
         $longitude = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getLongitudeOfPosition(5);
+            ->getLongitudeOfPoint(5);
 
         $this->assertEquals(9.979132, $longitude);
     }
@@ -103,7 +103,7 @@ class GpxReaderTest extends TestCase
 
         $elevation = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getElevationOfPosition(5);
+            ->getElevationOfPoint(5);
 
         $this->assertEquals(24.6, $elevation);
     }
@@ -116,7 +116,7 @@ class GpxReaderTest extends TestCase
 
         $dateTime = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getDateTimeOfPosition(5);
+            ->getDateTimeOfPoint(5);
 
         $this->assertEquals(new \DateTime('2016-11-25 15:40:29'), $dateTime);
     }
