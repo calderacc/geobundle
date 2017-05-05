@@ -2,6 +2,7 @@
 
 namespace Caldera\GeoBundle\Loop;
 
+use Caldera\GeoBundle\GpxReader\GpxReader;
 
 class Loop
 {
@@ -9,29 +10,29 @@ class Loop
     protected $gpxReader;
 
     /** @var int $startIndex */
-    protected $startIndex;
+    protected $startIndex = 0;
 
     /** @var int $endIndex */
-    protected $endIndex;
+    protected $endIndex = 0;
 
     /** @var \DateTimeZone */
     protected $dateTimeZone = null;
 
-    public function __construct(GpxReader $gpxReader)
+    public function __construct(GpxReader $gpxReader, \DateTimeZone $dateTimeZone = null)
     {
         $this->gpxReader = $gpxReader;
-        $this->startIndex = 0;
         $this->endIndex = $this->gpxReader->countPoints();
+        $this->dateTimeZone = $dateTimeZone;
     }
 
-    public function setDateTimeZone(\DateTimeZone $dateTimeZone = null)
+    public function setDateTimeZone(\DateTimeZone $dateTimeZone): Loop
     {
         $this->dateTimeZone = $dateTimeZone;
 
         return $this;
     }
 
-    public function execute(\DateTime $dateTime)
+    public function searchIndexForDateTime(\DateTime $dateTime): int
     {
         $found = false;
 
@@ -56,5 +57,12 @@ class Loop
                 return $mid;
             }
         }
+    }
+
+    public function searchPointForDateTime(\DateTime $dateTime): \SimpleXMLElement
+    {
+        $index = $this->searchIndexForDateTime($dateTime);
+
+        return $this->gpxReader->getPoint($index);
     }
 }

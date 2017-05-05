@@ -108,6 +108,11 @@ class GpxReader
         return new \DateTime($this->trackPointList[$n]->time);
     }
 
+    public function getPoint($n): \SimpleXMLElement
+    {
+        return $this->trackPointList[$n];
+    }
+
     public function getPosition(int $n): PositionInterface
     {
         /** @var PositionInterface $position */
