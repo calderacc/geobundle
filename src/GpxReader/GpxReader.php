@@ -26,6 +26,8 @@ class GpxReader
 
         $this->rootNode = new \SimpleXMLElement($this->xmlString);
 
+        $this->registerXpathNamespace('gpx', 'http://www.topografix.com/GPX/1/1');
+
         return $this;
     }
 
@@ -34,6 +36,15 @@ class GpxReader
         $this->xmlString = file_get_contents($filename);
 
         $this->rootNode = new \SimpleXMLElement($this->xmlString);
+
+        $this->registerXpathNamespace('gpx', 'http://www.topografix.com/GPX/1/1');
+
+        return $this;
+    }
+
+    public function registerXpathNamespace(string $prefix, string $namespace): GpxReader
+    {
+        $this->rootNode->registerXPathNamespace($prefix, $namespace);
 
         return $this;
     }
@@ -53,9 +64,14 @@ class GpxReader
         return new \DateTime($this->rootNode->trk->trkseg->trkpt[count($this->rootNode->trk->trkseg->trkpt) - 1]->time);
     }
 
+    public function getTrackPoints(): array
+    {
+        return $this->rootNode->xpath('//gpx:trkpt');
+    }
+
     public function countPositions(): int
     {
-        return count($this->rootNode->trk->trkseg->trkpt);
+        return count($this->getTrackPoints());
     }
 
     public function getLatitudeOfPosition(int $n): float
