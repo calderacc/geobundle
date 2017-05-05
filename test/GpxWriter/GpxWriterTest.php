@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\GeoBundle\Tests\DistanceCalculator;
+namespace Caldera\GeoBundle\Test\DistanceCalculator;
 
 use Caldera\GeoBundle\GpxWriter\GpxWriter;
 
