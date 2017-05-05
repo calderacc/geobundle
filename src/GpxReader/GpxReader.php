@@ -7,44 +7,56 @@ use Caldera\GeoBundle\EntityInterface\PositionInterface;
 
 class GpxReader
 {
-    /** @var string $xmlString */
-    protected $xmlString;
-
     /** @var \SimpleXMLElement $rootNode */
     protected $rootNode;
 
     protected $positionClass;
+
+    /** @var \SimpleXMLElement[]  $trackPointList */
+    protected $trackPointList = [];
 
     public function __construct($positionClass = Position::class)
     {
         $this->positionClass = $positionClass;
     }
 
-    public function loadFromString(string $xmlString): GpxReader
+    public function loadFromString(string $gpxString): GpxReader
     {
-        $this->xmlString = $xmlString;
-
-        $this->rootNode = new \SimpleXMLElement($this->xmlString);
-
-        $this->registerXpathNamespace('gpx', 'http://www.topografix.com/GPX/1/1');
+        $this->prepareGpx($gpxString);
 
         return $this;
     }
 
     public function loadFromFile(string $filename): GpxReader
     {
-        $this->xmlString = file_get_contents($filename);
+        $gpxString = file_get_contents($filename);
 
-        $this->rootNode = new \SimpleXMLElement($this->xmlString);
-
-        $this->registerXpathNamespace('gpx', 'http://www.topografix.com/GPX/1/1');
+        $this->prepareGpx($gpxString);
 
         return $this;
     }
 
-    public function registerXpathNamespace(string $prefix, string $namespace): GpxReader
+    protected function prepareGpx(string $xmlString): GpxReader
+    {
+        $this->rootNode = new \SimpleXMLElement($xmlString);
+
+        $this->registerXpathNamespace('gpx', 'http://www.topografix.com/GPX/1/1');
+
+        $this->createTrackPointList();
+
+        return $this;
+    }
+
+    protected function registerXpathNamespace(string $prefix, string $namespace): GpxReader
     {
         $this->rootNode->registerXPathNamespace($prefix, $namespace);
+
+        return $this;
+    }
+
+    protected function createTrackPointList(): GpxReader
+    {
+        $this->trackPointList = $this->rootNode->xpath('//gpx:trkpt');
 
         return $this;
     }
@@ -64,14 +76,9 @@ class GpxReader
         return new \DateTime($this->rootNode->trk->trkseg->trkpt[count($this->rootNode->trk->trkseg->trkpt) - 1]->time);
     }
 
-    public function getTrackPoints(): array
-    {
-        return $this->rootNode->xpath('//gpx:trkpt');
-    }
-
     public function countPositions(): int
     {
-        return count($this->getTrackPoints());
+        return count($this->trackPointList);
     }
 
     public function getLatitudeOfPosition(int $n): float
