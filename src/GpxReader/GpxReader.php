@@ -68,12 +68,14 @@ class GpxReader
 
     public function getStartDateTime(): \DateTime
     {
-        return new \DateTime($this->rootNode->trk->trkseg->trkpt[0]->time);
+        return new \DateTime($this->trackPointList[0]->time);
     }
 
     public function getEndDateTime(): \DateTime
     {
-        return new \DateTime($this->rootNode->trk->trkseg->trkpt[count($this->rootNode->trk->trkseg->trkpt) - 1]->time);
+        $lastTrackPointNumber = count($this->rootNode->trk->trkseg->trkpt) - 1;
+
+        return new \DateTime($this->trackPointList[$lastTrackPointNumber]->time);
     }
 
     public function countPositions(): int
@@ -83,22 +85,22 @@ class GpxReader
 
     public function getLatitudeOfPosition(int $n): float
     {
-        return (float) $this->rootNode->trk->trkseg->trkpt[$n]['lat'];
+        return (float) $this->trackPointList[$n]['lat'];
     }
 
     public function getLongitudeOfPosition(int $n): float
     {
-        return (float) $this->rootNode->trk->trkseg->trkpt[$n]['lon'];
+        return (float) $this->trackPointList[$n]['lon'];
     }
 
     public function getElevationOfPosition($n): float
     {
-        return (float) $this->rootNode->trk->trkseg->trkpt[$n]->ele[0];
+        return (float) $this->trackPointList[$n]->ele[0];
     }
 
     public function getDateTimeOfPosition($n): \DateTime
     {
-        return new \DateTime($this->rootNode->trk->trkseg->trkpt[$n]->time);
+        return new \DateTime($this->trackPointList[$n]->time);
     }
 
     public function getPosition(int $n): PositionInterface
