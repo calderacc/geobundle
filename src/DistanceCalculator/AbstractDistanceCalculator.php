@@ -4,7 +4,7 @@ namespace Caldera\GeoBundle\DistanceCalculator;
 
 use Caldera\GeoBasic\Coord\CoordInterface;
 use Caldera\GeoBasic\PolylineConverter\PolylineConverter;
-use Caldera\GeoBasic\TrackInterface\TrackInterface;
+use Caldera\GeoBasic\Track\TrackInterface;
 
 abstract class AbstractDistanceCalculator implements DistanceCalculatorInterface
 {
