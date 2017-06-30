@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\LatLngListGenerator;
+namespace Caldera\GeoBundle\LatLngListGenerator;
 
 class SimpleLatLngListGenerator extends AbstractLatLngListGenerator
 {

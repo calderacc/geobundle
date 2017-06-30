@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\LatLngListGenerator;
+namespace Caldera\GeoBundle\LatLngListGenerator;
 
 use Caldera\Bundle\CalderaBundle\Entity\Track;
 use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\TrackReader;
