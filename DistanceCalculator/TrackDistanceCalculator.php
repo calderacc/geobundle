@@ -2,7 +2,6 @@
 
 namespace Caldera\GeoBundle\DistanceCalculator;
 
-use Caldera\GeoBundle\DistanceCalculator\DistanceCalculatorInterface;
 use Caldera\GeoBundle\Entity\Track;
 use Caldera\GeoBundle\GpxReader\TrackReader;
 use Doctrine\Bundle\DoctrineBundle\Registry;

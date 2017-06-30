@@ -6,7 +6,7 @@
 
         <service id="caldera.geobundle.reader.track" class="Caldera\GeoBundle\GpxReader\TrackReader">
             <argument type="service" id="doctrine" />
-            <argument type="service" id="caldera.geobundle.distance_calculator.track" />
+            <argument type="service" id="vich_uploader.templating.helper.uploader_helper" />
         </service>
 
         <service id="caldera.geobundle.distance_calculator.simple" class="Caldera\GeoBundle\DistanceCalculator\SimpleDistanceCalculator">
@@ -14,7 +14,7 @@
 
         <service id="caldera.geobundle.distance_calculator.track" class="Caldera\GeoBundle\DistanceCalculator\TrackDistanceCalculator">
             <argument type="service" id="doctrine" />
-            <argument type="service" id="vich_uploader.templating.helper.uploader_helper" />
+            <argument type="service" id="caldera.geobundle.reader.track" />
         </service>
 
         <service id="caldera.geobundle.latlnglist_generator.simple" class="Caldera\GeoBundle\LatLngListGenerator\SimpleLatLngListGenerator">
