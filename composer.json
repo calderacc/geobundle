@@ -1,5 +1,5 @@
 {
-    "name": "caldera/geobundle",
+    "name": "calderacc/geobundle",
     "description": "Handle geo stuff with Symfony",
     "license": "MIT",
     "authors": [
