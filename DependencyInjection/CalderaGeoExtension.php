@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class CalderaGeoBundleExtension extends Extension
+class CalderaGeoExtension extends Extension
 {
     /**
      * {@inheritdoc}
