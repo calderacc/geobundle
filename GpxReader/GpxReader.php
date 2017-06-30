@@ -4,6 +4,7 @@ namespace Caldera\GeoBundle\GpxReader;
 
 use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
+use Caldera\GeoBundle\Exception\GpxFileNotFoundException;
 
 class GpxReader implements GpxReaderInterface
 {
@@ -29,7 +30,11 @@ class GpxReader implements GpxReaderInterface
 
     public function loadFromFile(string $filename): GpxReaderInterface
     {
-        $gpxString = file_get_contents($filename);
+        try {
+            $gpxString = file_get_contents($filename);
+        } catch (\Exception $exception) {
+            throw new GpxFileNotFoundException();
+        }
 
         $this->prepareGpx($gpxString);
 

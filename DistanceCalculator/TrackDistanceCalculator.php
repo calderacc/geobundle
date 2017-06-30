@@ -14,9 +14,7 @@ class TrackDistanceCalculator implements DistanceCalculatorInterface
     /** @var TrackReader $trackReader */
     protected $trackReader;
 
-    /**
-     * @var Track $track
-     */
+    /** @var Track $track */
     protected $track;
 
     public function __construct(Registry $doctrine, TrackReader $trackReader)
