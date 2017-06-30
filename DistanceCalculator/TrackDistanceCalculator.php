@@ -1,6 +1,6 @@
 <?php
 
-namespace Caldera\AppBundle\DistanceCalculator;
+namespace Caldera\GeoBundle\DistanceCalculator;
 
 use Caldera\GeoBundle\DistanceCalculator\DistanceCalculatorInterface;
 use Caldera\GeoBundle\Entity\Track;
