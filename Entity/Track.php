@@ -10,8 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table(name="track")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TrackRepository")
+ * @ORM\MappedSuperclass
  * @Vich\Uploadable
  */
 class Track extends BaseTrack
@@ -156,18 +155,6 @@ class Track extends BaseTrack
     public function getPoints(): int
     {
         return $this->points;
-    }
-
-    public function setPolyline(string $polyline): Track
-    {
-        $this->polyline = $polyline;
-
-        return $this;
-    }
-
-    public function getPolyline(): ?string
-    {
-        return $this->polyline;
     }
 
     public function setTrackFile(File $track = null): Track
