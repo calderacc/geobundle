@@ -4,9 +4,7 @@ namespace Caldera\GeoBundle\Entity;
 
 use Caldera\GeoBasic\Track\Track as BaseTrack;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
