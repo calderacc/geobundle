@@ -6,7 +6,7 @@
 
         <service id="caldera.geobundle.reader.track" class="Caldera\GeoBundle\GpxReader\TrackReader">
             <argument type="service" id="doctrine" />
-            <argument type="service" id="vich_uploader.templating.helper.uploader_helper" />
+            <argument type="string">%upload_destination.track_file%</argument>
         </service>
 
         <service id="caldera.geobundle.distance_calculator.simple" class="Caldera\GeoBundle\DistanceCalculator\SimpleDistanceCalculator">
