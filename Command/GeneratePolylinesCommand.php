@@ -4,6 +4,7 @@ namespace Caldera\GeoBundle\Command;
 
 use Caldera\GeoBundle\Entity\Track;
 use Caldera\GeoBundle\GpxReader\TrackReader;
+use Caldera\GeoBundle\PolylineGenerator\PolylineGenerator;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -23,9 +24,9 @@ class GeneratePolylinesCommand extends ContainerAwareCommand
     protected $manager;
 
     /**
-     * @var TrackReader $trackReader
+     * @var PolylineGenerator $polylineGenerator
      */
-    protected $trackReader;
+    protected $polylineGenerator;
 
     protected function configure(): void
     {
@@ -38,7 +39,7 @@ class GeneratePolylinesCommand extends ContainerAwareCommand
     {
         $this->doctrine = $this->getContainer()->get('doctrine');
         $this->manager = $this->doctrine->getManager();
-        $this->trackReader = $this->getContainer()->get('caldera.geobundle.reader.track');
+        $this->polylineGenerator = $this->getContainer()->get('caldera.geobundle.polyline_generator');
 
         $trackClass = $this->getContainer()->getParameter('caldera.geo_bundle.track_class');
 
@@ -47,7 +48,11 @@ class GeneratePolylinesCommand extends ContainerAwareCommand
         /** @var Track $track */
         foreach ($tracks as $track) {
             try {
-                $this->trackReader->loadTrack($track);
+                $this
+                    ->polylineGenerator
+                    ->setTrack($track)
+                    ->processTrack()
+                ;
 
                 $output->writeln(sprintf('<info>Generated polylines for track #%d</info>', $track->getId()));
             } catch (\Exception $exception) {
