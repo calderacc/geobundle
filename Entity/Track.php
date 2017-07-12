@@ -3,6 +3,7 @@
 namespace Caldera\GeoBundle\Entity;
 
 use Caldera\GeoBasic\Track\Track as BaseTrack;
+use Caldera\GeoBundle\EntityInterface\TrackInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -11,7 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\MappedSuperclass
  * @Vich\Uploadable
  */
-class Track extends BaseTrack
+class Track extends BaseTrack implements TrackInterface
 {
     /**
      * @ORM\Id
@@ -230,7 +231,7 @@ class Track extends BaseTrack
         return $this->updatedAt;
     }
 
-    public function setPreviewPolyline(string $previewPolyline): Track
+    public function setPreviewPolyline(string $previewPolyline = null): TrackInterface
     {
         $this->previewPolyline = $previewPolyline;
 
