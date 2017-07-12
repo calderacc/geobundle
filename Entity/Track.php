@@ -79,8 +79,6 @@ class Track extends BaseTrack
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->setCreationDateTime(new \DateTime());
     }
 
