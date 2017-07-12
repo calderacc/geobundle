@@ -31,5 +31,9 @@
             <argument type="service" id="caldera.geobundle.reader.track" />
             <argument type="string">10</argument>
         </service>
+
+        <service id="caldera.geobundle.polyline_generator" class="Caldera\GeoBundle\PolylineGenerator\PolylineGenerator">
+            <argument type="service" id="caldera.geobundle.reader.track" />
+        </service>
     </services>
 </container>
