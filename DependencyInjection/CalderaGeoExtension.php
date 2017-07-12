@@ -20,6 +20,9 @@ class CalderaGeoExtension extends Extension
         $configuration = new Configuration();
 
         $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('caldera.geo_bundle.track_class', $config['track_class']);
+        $container->setParameter('caldera.geo_bundle.position_class', $config['position_class']);
     }
 
 
