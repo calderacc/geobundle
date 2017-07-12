@@ -61,6 +61,11 @@ class Track extends BaseTrack
     protected $polyline;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $previewPolyline;
+
+    /**
      * @Vich\UploadableField(mapping="track_file", fileNameProperty="trackFilename")
      */
     protected $trackFile;
@@ -223,5 +228,17 @@ class Track extends BaseTrack
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function setPreviewPolyline(string $previewPolyline): Track
+    {
+        $this->previewPolyline = $previewPolyline;
+
+        return $this;
+    }
+
+    public function getPreviewPolyline(): ?string
+    {
+        return $this->previewPolyline;
     }
 }
