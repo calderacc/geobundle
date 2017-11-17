@@ -45,9 +45,9 @@ class Loop
                 $midDateTime->setTimezone($this->dateTimeZone);
             }
 
-            if ($midDateTime->format('Y-m-d-H-i-s') < $dateTime->format('Y-m-d-H-i-s')) {
+            if ($midDateTime < $dateTime) {
                 $this->startIndex = $mid;
-            } elseif ($midDateTime->format('Y-m-d-H-i-s') > $dateTime->format('Y-m-d-H-i-s')) {
+            } elseif ($midDateTime > $dateTime) {
                 $this->endIndex = $mid;
             } else {
                 return $mid;
