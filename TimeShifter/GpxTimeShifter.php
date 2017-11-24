@@ -6,7 +6,7 @@ use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\Entity\Track;
 use Caldera\GeoBundle\GpxReader\GpxReader;
 
-class GpxTimeShifter
+class GpxTimeShifter extends TimeShifter
 {
     /** @var GpxReader $gpxReader */
     protected $gpxReader;
@@ -23,19 +23,7 @@ class GpxTimeShifter
     {
         $this->gpxReader->loadFromFile($filename);
 
-        return $this;
-    }
-
-    public function shift(\DateInterval $interval)
-    {
-        for ($i = 0; $i < $this->gpxReader->countPoints(); ++$i) {
-            /** @var Position $position */
-            $position = $this->gpxReader->getPosition($i);
-
-            $dateTime = new \DateTime(sprintf('@%d', $position->getTimestamp()));
-            $dateTime->sub($interval);
-            $position->setTimestamp($dateTime->getTimestamp());
-        }
+        $this->positionList = $this->gpxReader->createPositionList();
 
         return $this;
     }
