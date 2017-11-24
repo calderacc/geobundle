@@ -16,21 +16,23 @@ interface PositionListInterface
 
     public function getLongitude(int $n): float;
 
-    public function getElevation(int $n): float;
+    public function getAltitude(int $n): float;
 
     public function getDateTime(int $n): \DateTime;
 
     public function get(int $n): ?PositionInterface;
 
+    public function set(int $n, PositionInterface $position): PositionListInterface;
+
     public function pop(): ?PositionInterface;
 
     public function push(PositionInterface $position): PositionListInterface;
 
-    public function unshift(): ?PositionInterface;
+    public function shift(): ?PositionInterface;
 
-    public function shift(PositionInterface $position): PositionListInterface;
+    public function unshift(PositionInterface $position): PositionListInterface;
 
     public function add(PositionInterface $position): PositionListInterface;
 
-    public function remove(int $n): ?PositionListInterface;
+    public function remove(int $n): PositionListInterface;
 }
