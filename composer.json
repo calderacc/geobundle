@@ -1,5 +1,5 @@
 {
-    "name": "caldera/geobundle",
+    "name": "calderacc/geobundle",
     "description": "Handle geo stuff with Symfony",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,8 @@
     "require": {
         "calderacc/geobasic": "0.2",
         "php": "^7.1",
-        "emcconville/google-map-polyline-encoding-tool": ">=1.2.1",
+        "emcconville/google-map-polyline-encoding-tool" : ">=1.2.1",
+        "emcconville/point-reduction-algorithms": "^1.2",
         "ext-xml": "*"
     },
     "require-dev": {

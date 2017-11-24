@@ -1,9 +1,9 @@
 <?php
 
-namespace Caldera\Bundle\CriticalmassCoreBundle\Gps\LatLngListGenerator;
+namespace Caldera\GeoBundle\LatLngListGenerator;
 
-use Caldera\Bundle\CalderaBundle\Entity\Track;
-use Caldera\Bundle\CriticalmassCoreBundle\Gps\GpxReader\TrackReader;
+use Caldera\GeoBundle\Entity\Track;
+use Caldera\GeoBundle\GpxReader\TrackReader;
 
 abstract class AbstractLatLngListGenerator
 {
