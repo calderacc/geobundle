@@ -33,7 +33,7 @@ class GpxReader implements GpxReaderInterface
         try {
             $gpxString = file_get_contents($filename);
         } catch (\Exception $exception) {
-            throw new GpxFileNotFoundException();
+            throw new GpxFileNotFoundException($exception);
         }
 
         $this->prepareGpx($gpxString);
