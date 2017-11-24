@@ -4,7 +4,7 @@ namespace Caldera\GeoBundle\PositionList;
 
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 
-interface PositionListInterface
+interface PositionListInterface extends \Countable
 {
     public function getStartDateTime(): \DateTime;
 

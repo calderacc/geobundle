@@ -4,7 +4,7 @@ namespace Caldera\GeoBundle\PositionList;
 
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 
-class PositionList implements PositionListInterface, \Countable
+class PositionList implements PositionListInterface
 {
     protected $list = [];
 
