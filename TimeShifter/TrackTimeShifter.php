@@ -2,11 +2,10 @@
 
 namespace Caldera\GeoBundle\TimeShifter;
 
-use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\Entity\Track;
 use Caldera\GeoBundle\GpxReader\TrackReader;
 
-class TrackTimeShifter
+class TrackTimeShifter extends TimeShifter
 {
     /** @var TrackReader $trackReader */
     protected $trackReader;
@@ -25,19 +24,13 @@ class TrackTimeShifter
 
         $this->trackReader->loadTrack($this->track);
 
+        $this->positionList = $this->trackReader->createPositionList();
+
         return $this;
     }
 
-    public function shift(\DateInterval $interval)
+    public function getTrackReader(): TrackReader
     {
-        for ($i = 0; $i <= $this->trackReader->countPoints(); ++$i) {
-            /** @var Position $position */
-
-            $dateTime = new \DateTime(sprintf('@%d', $position->getTimestamp()));
-            $dateTime->sub($interval);
-            $position->setTimestamp($dateTime->getTimestamp());
-        }
-
-        return $this;
+        return $this->trackReader;
     }
 }
