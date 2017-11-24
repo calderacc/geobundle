@@ -5,6 +5,8 @@ namespace Caldera\GeoBundle\GpxReader;
 use Caldera\GeoBundle\Entity\Position;
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 use Caldera\GeoBundle\Exception\GpxFileNotFoundException;
+use Caldera\GeoBundle\PositionList\PositionList;
+use Caldera\GeoBundle\PositionList\PositionListInterface;
 
 class GpxReader implements GpxReaderInterface
 {
@@ -118,7 +120,7 @@ class GpxReader implements GpxReaderInterface
         return $this->trackPointList[$n];
     }
 
-    public function getPosition(int $n): PositionInterface
+    public function createPosition(int $n): PositionInterface
     {
         /** @var PositionInterface $position */
         $position = new $this->positionClass(
@@ -132,5 +134,18 @@ class GpxReader implements GpxReaderInterface
         ;
 
         return $position;
+    }
+
+    public function createPositionList(): PositionListInterface
+    {
+        $positionList = new PositionList();
+
+        for ($n = 0; $n < $this->countPoints(); ++$n) {
+            $position = $this->createPosition($n);
+
+            $positionList->add($position);
+        }
+
+        return $positionList;
     }
 }

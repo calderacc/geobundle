@@ -15,12 +15,14 @@ class PositionList implements PositionListInterface, \Countable
 
     public function getStartDateTime(): \DateTime
     {
-        // TODO: Implement getStartDateTime() method.
+        return $this->get(0)->getDateTime();
     }
 
     public function getEndDateTime(): \DateTime
     {
-        // TODO: Implement getEndDateTime() method.
+        $count = $this->count();
+
+        return $this->get($count - 1)->getDateTime();
     }
 
     public function count(): int

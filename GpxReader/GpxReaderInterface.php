@@ -2,8 +2,8 @@
 
 namespace Caldera\GeoBundle\GpxReader;
 
-
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
+use Caldera\GeoBundle\PositionList\PositionListInterface;
 
 interface GpxReaderInterface
 {
@@ -29,5 +29,7 @@ interface GpxReaderInterface
 
     public function getPoint(int $n): \SimpleXMLElement;
 
-    public function getPosition(int $n): PositionInterface;
+    public function createPosition(int $n): PositionInterface;
+
+    public function createPositionList(): PositionListInterface;
 }
