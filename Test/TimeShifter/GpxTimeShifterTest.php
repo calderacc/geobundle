@@ -16,7 +16,8 @@ class GpxTimeShifterTest extends TestCase
 
         $dateTime = $gpxReader
             ->loadFromFile($gpxTestFilename)
-            ->getDateTimeOfPoint(5);
+            ->getDateTimeOfPoint(5)
+        ;
 
         $this->assertEquals(new \DateTime('2016-11-25 15:40:29'), $dateTime);
     }
@@ -32,11 +33,15 @@ class GpxTimeShifterTest extends TestCase
 
         $timeShifter
             ->loadGpxFile($gpxTestFilename)
-            ->shift($interval);
+            ->shift($interval)
+        ;
 
-        $dateTime = $timeShifter
-            ->getGpxReader()
-            ->getDateTimeOfPoint(5);
+        $positionList = $timeShifter->getPositionList();
+
+        $dateTime = $positionList
+            ->get(5)
+            ->getDateTime()
+        ;
 
         $this->assertEquals(new \DateTime('2016-11-25 15:40:29'), $dateTime);
     }

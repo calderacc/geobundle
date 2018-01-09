@@ -26,7 +26,7 @@ class TimeShifterTest extends TestCase
         return $positionList;
     }
 
-    public function testGpxTimeShifter1()
+    public function testTimeShifter1()
     {
         $positionList = $this->createPositionList();
 
@@ -37,19 +37,17 @@ class TimeShifterTest extends TestCase
         $this->assertEquals((new \DateTime('2011-06-24 19:15:00'))->format('U'), $position2->getTimestamp());
     }
 
-
-    public function testGpxTimeShifter2()
+    public function testTimeShifter2()
     {
-        $positionList = $this->createPositionList();
-
-        $timeShifter = new TimeShifter($positionList);
+        $timeShifter = new TimeShifter();
+        $timeShifter->setPositionList($this->createPositionList());
 
         $timeShifter->shift(new \DateInterval('PT1H'));
 
         $positionList = $timeShifter->getPositionList();
 
-        $position1 = $positionList->get(1);
-        $position2 = $positionList->get(2);
+        $position1 = $positionList->get(0);
+        $position2 = $positionList->get(1);
 
         $this->assertEquals((new \DateTime('2011-06-24 20:00:00'))->format('U'), $position1->getTimestamp());
         $this->assertEquals((new \DateTime('2011-06-24 20:15:00'))->format('U'), $position2->getTimestamp());

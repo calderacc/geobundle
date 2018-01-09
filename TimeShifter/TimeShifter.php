@@ -10,7 +10,7 @@ class TimeShifter extends AbstractTimeShifter
             $position = $this->positionList->get($i);
 
             $dateTime = new \DateTime(sprintf('@%d', $position->getTimestamp()));
-            $dateTime->sub($interval);
+            $dateTime->add($interval);
             $position->setTimestamp($dateTime->getTimestamp());
         }
 
