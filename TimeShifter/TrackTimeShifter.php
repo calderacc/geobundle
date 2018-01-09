@@ -28,9 +28,4 @@ class TrackTimeShifter extends TimeShifter
 
         return $this;
     }
-
-    public function getTrackReader(): TrackReader
-    {
-        return $this->trackReader;
-    }
 }
