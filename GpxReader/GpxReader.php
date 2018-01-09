@@ -13,15 +13,8 @@ class GpxReader implements GpxReaderInterface
     /** @var \SimpleXMLElement $rootNode */
     protected $rootNode;
 
-    protected $positionClass;
-
     /** @var \SimpleXMLElement[]  $trackPointList */
     protected $trackPointList = [];
-
-    public function __construct($positionClass = Position::class)
-    {
-        $this->positionClass = $positionClass;
-    }
 
     public function loadFromString(string $gpxString): GpxReaderInterface
     {
@@ -123,7 +116,7 @@ class GpxReader implements GpxReaderInterface
     public function createPosition(int $n): PositionInterface
     {
         /** @var PositionInterface $position */
-        $position = new $this->positionClass(
+        $position = new Position(
             $this->getLatitudeOfPoint($n),
             $this->getLongitudeOfPoint($n)
         );
