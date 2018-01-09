@@ -2,12 +2,16 @@
 
 namespace Caldera\GeoBundle\Loop;
 
-use Caldera\GeoBundle\GpxReader\GpxReader;
+use Caldera\GeoBundle\EntityInterface\PositionInterface;
+use Caldera\GeoBundle\PositionList\PositionListInterface;
 
 class Loop
 {
-    /** @var GpxReader $gpxReader */
-    protected $gpxReader;
+    /** @var \DateTimeZone $dateTimeZone */
+    protected $dateTimeZone = null;
+
+    /** @var PositionListInterface $positionList */
+    protected $positionList;
 
     /** @var int $startIndex */
     protected $startIndex = 0;
@@ -15,14 +19,16 @@ class Loop
     /** @var int $endIndex */
     protected $endIndex = 0;
 
-    /** @var \DateTimeZone */
-    protected $dateTimeZone = null;
-
-    public function __construct(GpxReader $gpxReader, \DateTimeZone $dateTimeZone = null)
+    public function __construct()
     {
-        $this->gpxReader = $gpxReader;
-        $this->endIndex = $this->gpxReader->countPoints();
-        $this->dateTimeZone = $dateTimeZone;
+
+    }
+
+    public function setPositionList(PositionListInterface $positionList): Loop
+    {
+        $this->positionList = $positionList;
+
+        return $this;
     }
 
     public function setDateTimeZone(\DateTimeZone $dateTimeZone): Loop
@@ -32,14 +38,17 @@ class Loop
         return $this;
     }
 
-    public function searchIndexForDateTime(\DateTime $dateTime): int
+    public function searchIndexForDateTime(\DateTimeInterface $dateTime): int
     {
         $found = false;
+
+        $this->startIndex = 0;
+        $this->endIndex = count($this->positionList);
 
         while (!$found) {
             $mid = $this->startIndex + (int)floor(($this->endIndex - $this->startIndex) / 2);
 
-            $midDateTime = $this->gpxReader->getDateTimeOfPoint($mid);
+            $midDateTime = $this->positionList->get($mid)->getDateTime();
 
             if ($this->dateTimeZone) {
                 $midDateTime->setTimezone($this->dateTimeZone);
@@ -59,10 +68,10 @@ class Loop
         }
     }
 
-    public function searchPointForDateTime(\DateTime $dateTime): \SimpleXMLElement
+    public function searchPositionForDateTime(\DateTime $dateTime): PositionInterface
     {
         $index = $this->searchIndexForDateTime($dateTime);
 
-        return $this->gpxReader->getPoint($index);
+        return $this->positionList->get($index);
     }
 }
