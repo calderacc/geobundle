@@ -5,35 +5,16 @@ namespace Caldera\GeoBundle\DistanceCalculator;
 use Caldera\GeoBasic\Coord\CoordInterface;
 use Caldera\GeoBasic\PolylineConverter\PolylineConverter;
 use Caldera\GeoBasic\Track\TrackInterface;
+use Caldera\GeoBundle\PositionList\PositionListInterface;
 
 abstract class AbstractDistanceCalculator implements DistanceCalculatorInterface
 {
-    /** @var array $coordList */
-    protected $coordList = [];
+    /** @var PositionListInterface $positionList */
+    protected $positionList;
 
-    public function __construct()
+    public function setPositionList(PositionListInterface $positionList): DistanceCalculatorInterface
     {
-    }
-
-    public function addCoord(CoordInterface $coord): DistanceCalculatorInterface
-    {
-        array_push($this->coordList, $coord);
-
-        return $this;
-    }
-
-    public function addCoords(array $coordList): DistanceCalculatorInterface
-    {
-        $this->coordList = array_merge($this->coordList, $coordList);
-
-        return $this;
-    }
-
-    public function addTrack(TrackInterface $track): DistanceCalculatorInterface
-    {
-        $coordList = PolylineConverter::getCoordList($track);
-
-        $this->addCoords($coordList);
+        $this->positionList = $positionList;
 
         return $this;
     }
