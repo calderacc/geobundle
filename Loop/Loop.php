@@ -5,7 +5,7 @@ namespace Caldera\GeoBundle\Loop;
 use Caldera\GeoBundle\EntityInterface\PositionInterface;
 use Caldera\GeoBundle\PositionList\PositionListInterface;
 
-class Loop
+class Loop implements LoopInterface
 {
     /** @var \DateTimeZone $dateTimeZone */
     protected $dateTimeZone = null;
@@ -24,14 +24,14 @@ class Loop
 
     }
 
-    public function setPositionList(PositionListInterface $positionList): Loop
+    public function setPositionList(PositionListInterface $positionList): LoopInterface
     {
         $this->positionList = $positionList;
 
         return $this;
     }
 
-    public function setDateTimeZone(\DateTimeZone $dateTimeZone): Loop
+    public function setDateTimeZone(\DateTimeZone $dateTimeZone): LoopInterface
     {
         $this->dateTimeZone = $dateTimeZone;
 
